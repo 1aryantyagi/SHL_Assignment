@@ -6,6 +6,11 @@ from main import ProductRecommender
 import os
 
 # Load model (load once for performance)
+try:
+    recommender = ProductRecommender("product_catalog.csv")
+except Exception as e:
+    print(f"❌ Failed to initialize recommender: {e}")
+    recommender = None
 
 app = FastAPI()
 
@@ -42,9 +47,13 @@ class RecommendationResponse(BaseModel):
 @app.post("/recommend", response_model=RecommendationResponse)
 async def recommend_assessments(request: QueryRequest):
     try:
-        recommender = ProductRecommender("product_catalog.csv")
+        if not recommender:
+            raise Exception("Recommender not initialized.")
+        print(f"Received query: {request.query}")
         result = recommender.recommend_simple(request.query)
-        print(result)
+        print("Recommendation result:", result)
         return result
     except Exception as e:
+        print("❌ Error during recommendation:", str(e))
         raise HTTPException(status_code=500, detail=f"Recommendation failed: {str(e)}")
+
