@@ -6,7 +6,6 @@ from main import ProductRecommender
 import os
 
 # Load model (load once for performance)
-recommender = ProductRecommender("product_catalog.csv")
 
 app = FastAPI()
 
@@ -43,6 +42,7 @@ class RecommendationResponse(BaseModel):
 @app.post("/recommend", response_model=RecommendationResponse)
 async def recommend_assessments(request: QueryRequest):
     try:
+        recommender = ProductRecommender("product_catalog.csv")
         result = recommender.recommend_simple(request.query)
         print(result)
         return result
