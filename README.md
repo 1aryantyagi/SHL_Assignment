@@ -13,8 +13,8 @@ A full-stack AI-powered product recommendation system that suggests SHL assessme
 
 | Endpoint     | Method | Description                                  | Link                                                                  |
 |--------------|--------|----------------------------------------------|-----------------------------------------------------------------------|
-| `/recommend` | POST   | Returns assessment recommendations           | [POST /recommend](https://shl-assignment-r7vz.onrender.com/recommend) |
-| `/health`    | GET    | Health check for the backend                 | [GET /health](https://shl-assignment-r7vz.onrender.com/health)        |
+| `/recommend` | POST   | Returns assessment recommendations           | https://shl-assignment-r7vz.onrender.com/recommend                    |
+| `/health`    | GET    | Health check for the backend                 | https://shl-assignment-r7vz.onrender.com/health                       |
 
 ---
 
